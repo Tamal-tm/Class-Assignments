@@ -1,0 +1,45 @@
+import java.util.*;
+
+class PhoneCombination {
+
+    static String[] map = {
+            "", "", "abc", "def", "ghi",
+            "jkl", "mno", "pqrs", "tuv", "wxyz"
+    };
+
+    void generate(String digits, int index,
+                  String current, List<String> result) {
+
+        if (index == digits.length()) {
+            result.add(current);
+            return;
+        }
+
+        String letters = map[digits.charAt(index) - '0'];
+
+        for (int i = 0; i < letters.length(); i++) {
+
+            generate(digits, index + 1,
+                    current + letters.charAt(i), result);
+        }
+    }
+}
+
+public class Q3 {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Digits: ");
+        String digits = sc.nextLine();
+
+        List<String> result = new ArrayList<>();
+
+        PhoneCombination obj = new PhoneCombination();
+
+        if (!digits.isEmpty())
+            obj.generate(digits, 0, "", result);
+
+        System.out.println(result);
+    }
+}
