@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Filter {
+
+    String filterText(String text, String[] badWords) {
+
+        for (String word : badWords) {
+
+            text = text.replaceAll(word, "***");
+        }
+
+        return text;
+    }
+}
+
+public class Q6 {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String[] badWords = {"bad", "ugly", "stupid"};
+
+        System.out.print("Enter Text: ");
+        String text = sc.nextLine();
+
+        Filter obj = new Filter();
+
+        System.out.println("Filtered Text: " +
+                obj.filterText(text, badWords));
+    }
+}
